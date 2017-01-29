@@ -200,6 +200,8 @@ Global
 		{8FB260DC-0888-453F-A304-2E56B0C165DD}.Debug|ARM.Build.0 = Debug|ARM
 		{8FB260DC-0888-453F-A304-2E56B0C165DD}.Debug|ARM.Deploy.0 = Debug|ARM
 		{8FB260DC-0888-453F-A304-2E56B0C165DD}.Debug|iPhone.ActiveCfg = Debug|x86
+		{8FB260DC-0888-453F-A304-2E56B0C165DD}.Debug|iPhone.Build.0 = Debug|x86
+		{8FB260DC-0888-453F-A304-2E56B0C165DD}.Debug|iPhone.Deploy.0 = Debug|x86
 		{8FB260DC-0888-453F-A304-2E56B0C165DD}.Debug|iPhoneSimulator.ActiveCfg = Debug|x86
 		{8FB260DC-0888-453F-A304-2E56B0C165DD}.Debug|x64.ActiveCfg = Debug|x64
 		{8FB260DC-0888-453F-A304-2E56B0C165DD}.Debug|x64.Build.0 = Debug|x64
@@ -240,7 +242,6 @@ Global
 		{C5809E36-C0AE-4110-9289-01D7AA25BC72}.Debug|iPhone.ActiveCfg = Debug|iPhone
 		{C5809E36-C0AE-4110-9289-01D7AA25BC72}.Debug|iPhone.Build.0 = Debug|iPhone
 		{C5809E36-C0AE-4110-9289-01D7AA25BC72}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
-		{C5809E36-C0AE-4110-9289-01D7AA25BC72}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
 		{C5809E36-C0AE-4110-9289-01D7AA25BC72}.Debug|x64.ActiveCfg = Debug|iPhone
 		{C5809E36-C0AE-4110-9289-01D7AA25BC72}.Debug|x86.ActiveCfg = Debug|iPhone
 		{C5809E36-C0AE-4110-9289-01D7AA25BC72}.Release|Any CPU.ActiveCfg = Release|iPhone

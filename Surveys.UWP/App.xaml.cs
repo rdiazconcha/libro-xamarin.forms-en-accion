@@ -52,7 +52,9 @@ namespace Surveys.UWP
             if (rootFrame == null)
             {
                 // Create a Frame to act as the navigation context and navigate to the first page
-                rootFrame = new Frame();
+rootFrame = new Frame();
+
+Xamarin.Forms.Forms.Init(e);
 
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
