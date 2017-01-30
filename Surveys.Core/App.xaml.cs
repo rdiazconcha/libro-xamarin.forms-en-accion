@@ -7,16 +7,7 @@ namespace Surveys.Core
         public App()
         {
             InitializeComponent();
-            MainPage = new ContentPage()
-            {
-                Content =
-                    new Label()
-                    {
-                        Text = "Prueba",
-                        HorizontalOptions = LayoutOptions.Center,
-                        VerticalOptions = LayoutOptions.Center
-                    }
-            };
+            MainPage = new NavigationPage(new SurveysView());
         }
     }
 }
