@@ -31,8 +31,8 @@
       <RowDefinition />
     </Grid.RowDefinitions>
     
-    <Button Text="+"
-            Clicked="AddSurveyButton_Clicked" />
+<Button Text="+"
+        Command="{Binding NewSurveyCommand}" />
     
     <ListView Grid.Row="1"
               ItemsSource="{Binding Surveys}"
