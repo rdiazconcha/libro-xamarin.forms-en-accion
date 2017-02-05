@@ -39,8 +39,10 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Data.cs" />
     <Compile Include="Literals.cs" />
     <Compile Include="Messages.cs" />
+    <Compile Include="NotificationObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Survey.cs" />
     <Compile Include="SurveyDetailsView.xaml.cs">
@@ -49,6 +51,7 @@
     <Compile Include="SurveysView.xaml.cs">
       <DependentUpon>SurveysView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TeamColorConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">

@@ -1,9 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:core="clr-namespace:Surveys.Core;assembly=Surveys.Core"
              x:Class="Surveys.Core.SurveysView"
              Title="Encuestas">
-  <Grid Margin="10">
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <core:Data x:Key="data" />
+      
+      <core:TeamColorConverter x:Key="TeamColorConverter" />
+      
+      <DataTemplate x:Key="SurveyDataTemplate">
+        <ViewCell>
+          <StackLayout>
+            <Label Text="{Binding Name}"
+                   FontSize="24" />
+            <Label Text="{Binding Birthdate, StringFormat='{}{0:dd/MM/yyyy}'}" />
+            <Label Text="{Binding FavoriteTeam}"
+                   TextColor="{Binding FavoriteTeam, Converter={StaticResource TeamColorConverter}}" />
+          </StackLayout>
+        </ViewCell>
+      </DataTemplate>
+    </ResourceDictionary>
+  </ContentPage.Resources>
+  
+  <Grid Margin="10"
+        BindingContext="{Binding Source={StaticResource data}}">
     <Grid.RowDefinitions>
       <RowDefinition Height="Auto" />
       <RowDefinition />
@@ -12,7 +34,10 @@
     <Button Text="+"
             Clicked="AddSurveyButton_Clicked" />
     
-    <StackLayout Grid.Row="1"
-                 x:Name="SurveysPanel" />
+    <ListView Grid.Row="1"
+              ItemsSource="{Binding Surveys}"
+              SelectedItem="{Binding SelectedSurvey, Mode=TwoWay}"
+              ItemTemplate="{StaticResource SurveyDataTemplate}"
+              HasUnevenRows="True" />
   </Grid>
 </ContentPage>
