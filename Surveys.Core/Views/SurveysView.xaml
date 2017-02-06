@@ -6,7 +6,7 @@
              Title="Encuestas">
   <ContentPage.Resources>
     <ResourceDictionary>
-      <core:Data x:Key="data" />
+      <core:SurveysViewModel x:Key="SurveysViewModel" />
       
       <core:TeamColorConverter x:Key="TeamColorConverter" />
       
@@ -25,14 +25,14 @@
   </ContentPage.Resources>
   
   <Grid Margin="10"
-        BindingContext="{Binding Source={StaticResource data}}">
+        BindingContext="{Binding Source={StaticResource SurveysViewModel}}">
     <Grid.RowDefinitions>
       <RowDefinition Height="Auto" />
       <RowDefinition />
     </Grid.RowDefinitions>
     
-<Button Text="+"
-        Command="{Binding NewSurveyCommand}" />
+    <Button Text="+"
+            Command="{Binding NewSurveyCommand}" />
     
     <ListView Grid.Row="1"
               ItemsSource="{Binding Surveys}"

@@ -39,16 +39,17 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Data.cs" />
+    <Compile Include="ViewModels\SurveyDetailsViewModel.cs" />
+    <Compile Include="ViewModels\SurveysViewModel.cs" />
     <Compile Include="Literals.cs" />
     <Compile Include="Messages.cs" />
     <Compile Include="NotificationObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Survey.cs" />
-    <Compile Include="SurveyDetailsView.xaml.cs">
+    <Compile Include="Models\Survey.cs" />
+    <Compile Include="Views\SurveyDetailsView.xaml.cs">
       <DependentUpon>SurveyDetailsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SurveysView.xaml.cs">
+    <Compile Include="Views\SurveysView.xaml.cs">
       <DependentUpon>SurveysView.xaml</DependentUpon>
     </Compile>
     <Compile Include="TeamColorConverter.cs" />
@@ -77,16 +78,19 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="SurveyDetailsView.xaml">
+    <EmbeddedResource Include="Views\SurveyDetailsView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="SurveysView.xaml">
+    <EmbeddedResource Include="Views\SurveysView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Converters\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.3.3.180\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.3.180\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />
