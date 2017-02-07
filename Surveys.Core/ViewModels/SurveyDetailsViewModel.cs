@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
+using Surveys.Core.ServiceInterfaces;
 using Xamarin.Forms;
 
 namespace Surveys.Core.ViewModels
@@ -120,9 +121,26 @@ namespace Surveys.Core.ViewModels
             MessagingCenter.Send(this, Messages.SelectTeam, Teams.ToArray());
         }
 
-        private void EndSurveyCommandExecute()
+        private async void EndSurveyCommandExecute()
         {
             var newSurvey = new Survey() { Name = Name, Birthdate = Birthdate, FavoriteTeam = FavoriteTeam };
+
+            var geolocationService = DependencyService.Get<IGeolocationService>();
+
+            if (geolocationService != null)
+            {
+                try
+                {
+                    var currentLocation = await geolocationService.GetCurrentLocationAsync();
+                    newSurvey.Lat = currentLocation.Item1;
+                    newSurvey.Lon = currentLocation.Item2;
+                }
+                catch (Exception)
+                {
+                    newSurvey.Lat = 0;
+                    newSurvey.Lon = 0;
+                }
+            }
 
             MessagingCenter.Send(this, Messages.NewSurveyComplete, newSurvey);
         }

@@ -10,9 +10,13 @@ namespace Surveys.Core
 
         public string FavoriteTeam { get; set; }
 
+        public double Lat { get; set; }
+
+        public double Lon { get; set; }
+
         public override string ToString()
         {
-            return $"{Name} |  {Birthdate} | {FavoriteTeam}";
+            return $"{Name} |  {Birthdate} | {FavoriteTeam} | {Lat} | {Lon}";
         }
     }
 }

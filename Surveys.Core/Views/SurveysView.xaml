@@ -14,10 +14,15 @@
         <ViewCell>
           <StackLayout>
             <Label Text="{Binding Name}"
-                   FontSize="24" />
+                    FontSize="24" />
             <Label Text="{Binding Birthdate, StringFormat='{}{0:dd/MM/yyyy}'}" />
             <Label Text="{Binding FavoriteTeam}"
-                   TextColor="{Binding FavoriteTeam, Converter={StaticResource TeamColorConverter}}" />
+                    TextColor="{Binding FavoriteTeam, Converter={StaticResource TeamColorConverter}}" />
+            <StackLayout Orientation="Horizontal">
+              <Label Text="{Binding Lat, StringFormat='{}{0:N4}'}" />
+              <Label Text="," />
+              <Label Text="{Binding Lon, StringFormat='{}{0:N4}'}" />
+            </StackLayout>
           </StackLayout>
         </ViewCell>
       </DataTemplate>

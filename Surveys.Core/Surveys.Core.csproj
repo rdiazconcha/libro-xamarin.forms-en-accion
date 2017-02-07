@@ -39,6 +39,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ServiceInterfaces\IGeolocationService.cs" />
     <Compile Include="ViewModels\SurveyDetailsViewModel.cs" />
     <Compile Include="ViewModels\SurveysViewModel.cs" />
     <Compile Include="Literals.cs" />
