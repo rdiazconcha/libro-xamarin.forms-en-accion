@@ -3,21 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:Surveys.Core.ViewModels;assembly=Surveys.Core"
              x:Class="Surveys.Core.SurveyDetailsView"
-             Title="Nueva encuesta">
-  
-<ContentPage.Resources>
-  <ResourceDictionary>
-    <viewModels:SurveyDetailsViewModel x:Key="SurveyDetailsViewModel" />
-  </ResourceDictionary>
-</ContentPage.Resources>
-  
-<Grid Margin="10"
-      BindingContext="{Binding Source={StaticResource SurveyDetailsViewModel}}">
-    <Grid.RowDefinitions>
-      <RowDefinition />
-      <RowDefinition Height="Auto" />
-    </Grid.RowDefinitions>
+             Title="Nueva encuesta"
+             BindingContext="{Binding Source={StaticResource SurveyDetailsViewModel}}">
 
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <viewModels:SurveyDetailsViewModel x:Key="SurveyDetailsViewModel" />
+    </ResourceDictionary>
+  </ContentPage.Resources>
+
+  <Grid Margin="10">
     <StackLayout>
       <Label Text="Nombre" />
       <Entry Text="{Binding Name, Mode=TwoWay}" />
@@ -37,9 +32,17 @@
                 Command="{Binding SelectTeamCommand}"  />
       </Grid>
     </StackLayout>
-    
-    <Button Text="Aceptar"
-            Grid.Row="1"
-            Command="{Binding EndSurveyCommand}" />
   </Grid>
+
+  <ContentPage.ToolbarItems>
+    <ToolbarItem Text="Aceptar"
+                 Command="{Binding EndSurveyCommand}">
+      <ToolbarItem.Icon>
+        <OnPlatform x:TypeArguments="FileImageSource"
+                    Android="ok.png"
+                    iOS="ok.png"
+                    WinPhone="assets/ok.png" />
+      </ToolbarItem.Icon>
+    </ToolbarItem>
+  </ContentPage.ToolbarItems>
 </ContentPage>

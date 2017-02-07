@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:core="clr-namespace:Surveys.Core;assembly=Surveys.Core"
              x:Class="Surveys.Core.SurveysView"
-             Title="Encuestas">
+             Title="Encuestas"
+             BindingContext="{Binding Source={StaticResource SurveysViewModel}}">
   <ContentPage.Resources>
     <ResourceDictionary>
       <core:SurveysViewModel x:Key="SurveysViewModel" />
@@ -29,20 +30,22 @@
     </ResourceDictionary>
   </ContentPage.Resources>
   
-  <Grid Margin="10"
-        BindingContext="{Binding Source={StaticResource SurveysViewModel}}">
-    <Grid.RowDefinitions>
-      <RowDefinition Height="Auto" />
-      <RowDefinition />
-    </Grid.RowDefinitions>
-    
-    <Button Text="+"
-            Command="{Binding NewSurveyCommand}" />
-    
-    <ListView Grid.Row="1"
-              ItemsSource="{Binding Surveys}"
+  <Grid Margin="10">
+    <ListView ItemsSource="{Binding Surveys}"
               SelectedItem="{Binding SelectedSurvey, Mode=TwoWay}"
               ItemTemplate="{StaticResource SurveyDataTemplate}"
               HasUnevenRows="True" />
   </Grid>
+  
+  <ContentPage.ToolbarItems>
+    <ToolbarItem Text="Nueva"
+                 Command="{Binding NewSurveyCommand}">
+      <ToolbarItem.Icon>
+        <OnPlatform x:TypeArguments="FileImageSource"
+                    Android="newcapture.png"
+                    iOS="newcapture.png"
+                    WinPhone="assets/newcapture.png" />
+      </ToolbarItem.Icon>
+    </ToolbarItem>
+  </ContentPage.ToolbarItems>
 </ContentPage>
