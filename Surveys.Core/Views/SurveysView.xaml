@@ -3,12 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:core="clr-namespace:Surveys.Core;assembly=Surveys.Core"
              x:Class="Surveys.Core.SurveysView"
-             Title="Encuestas"
-             BindingContext="{Binding Source={StaticResource SurveysViewModel}}">
+             Title="Encuestas">
   <ContentPage.Resources>
     <ResourceDictionary>
-      <core:SurveysViewModel x:Key="SurveysViewModel" />
-      
       <core:TeamColorConverter x:Key="TeamColorConverter" />
       
       <DataTemplate x:Key="SurveyDataTemplate">

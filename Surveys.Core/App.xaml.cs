@@ -1,13 +1,23 @@
-﻿using Xamarin.Forms;
+﻿using Prism.Unity;
+using Surveys.Core.Views;
+using Xamarin.Forms;
 
 namespace Surveys.Core
 {
-    public partial class App : Application
+    public partial class App : PrismApplication
     {
-        public App()
+        protected override async void OnInitialized()
         {
             InitializeComponent();
-            MainPage = new NavigationPage(new SurveysView());
+
+            await NavigationService.NavigateAsync($"{nameof(RootNavigationView)}/{nameof(SurveysView)}").ConfigureAwait(false);
+        }
+
+        protected override void RegisterTypes()
+        {
+            Container.RegisterTypeForNavigation<RootNavigationView>();
+            Container.RegisterTypeForNavigation<SurveysView>();
+            Container.RegisterTypeForNavigation<SurveyDetailsView>();
         }
     }
 }

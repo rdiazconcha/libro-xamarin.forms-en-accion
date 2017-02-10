@@ -7,11 +7,6 @@ namespace Surveys.Core
         public SurveysView()
         {
             InitializeComponent();
-
-            MessagingCenter.Subscribe<SurveysViewModel>(this, Messages.NewSurvey, async (sender) =>
-            {
-                await Navigation.PushAsync(new SurveyDetailsView());
-            });
         }
     }
 }

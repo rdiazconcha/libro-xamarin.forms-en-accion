@@ -1,12 +1,16 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
-using Surveys.Core.ViewModels;
-using Xamarin.Forms;
+using Prism.Commands;
+using Prism.Navigation;
 
 namespace Surveys.Core
 {
-    public class SurveysViewModel : NotificationObject
+    public class SurveysViewModel : ViewModelBase
     {
+        private INavigationService navigationService = null;
+
+        #region Properties
+
         private ObservableCollection<Survey> surveys;
 
         public ObservableCollection<Survey> Surveys
@@ -45,21 +49,32 @@ namespace Surveys.Core
             }
         }
 
+        #endregion
+
         public ICommand NewSurveyCommand { get; set; }
 
-        public SurveysViewModel()
+        public SurveysViewModel(INavigationService navigationService)
         {
+            this.navigationService = navigationService;
+
             Surveys = new ObservableCollection<Survey>();
 
-            NewSurveyCommand = new Command(NewSurveyCommandExecute);
-
-            MessagingCenter.Subscribe<SurveyDetailsViewModel, Survey>(this, Messages.NewSurveyComplete,
-                (sender, args) => { Surveys.Add(args); });
+            NewSurveyCommand = new DelegateCommand(NewSurveyCommandExecute);
         }
 
-        private void NewSurveyCommandExecute()
+        private async void NewSurveyCommandExecute()
         {
-            MessagingCenter.Send(this, Messages.NewSurvey);
+            await navigationService.NavigateAsync(nameof(SurveyDetailsView));
+        }
+
+        public override void OnNavigatedTo(NavigationParameters parameters)
+        {
+            base.OnNavigatedTo(parameters);
+
+            if (parameters.ContainsKey("NewSurvey"))
+            {
+                Surveys.Add(parameters["NewSurvey"] as Survey);
+            }
         }
     }
 }
