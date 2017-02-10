@@ -108,8 +108,10 @@
     <None Include="Surveys.UWP_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\about.png" />
     <Content Include="Assets\newcapture.png" />
     <Content Include="Assets\ok.png" />
+    <Content Include="Assets\survey.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />

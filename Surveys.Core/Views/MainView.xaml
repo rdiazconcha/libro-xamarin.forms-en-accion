@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Surveys.Core.Views.MainView">
+  <MasterDetailPage.Master>
+    <ContentPage Title="Encuestas">
+      <ListView ItemsSource="{Binding Modules}" 
+                SelectedItem="{Binding SelectedModule, Mode=TwoWay}"
+                SeparatorColor="Transparent"
+                HasUnevenRows="True"
+                BackgroundColor="#3D3D3D">
+
+        <ListView.Header>
+          <Grid BackgroundColor="#3578FF">
+            <Label Text="Encuestas"
+                   FontSize="40"
+                   TextColor="White"
+                   Margin="10, 40, 0, 40" />
+          </Grid>
+        </ListView.Header>
+        
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <ViewCell>
+              <Grid>               
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="Auto" />
+                  <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                
+                <Image Source="{Binding Icon}" 
+                       WidthRequest="50" 
+                       HeightRequest="50" />
+                <Label Text="{Binding Title}" 
+                       Grid.Column="1"
+                       TextColor="White"
+                       FontSize="Large"
+                       VerticalTextAlignment="Center"
+                       Margin="0, 10, 0, 10" />
+              </Grid>
+            </ViewCell>
+          </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>
+    </ContentPage>
+  </MasterDetailPage.Master>
+</MasterDetailPage>

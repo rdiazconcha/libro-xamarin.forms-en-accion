@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Surveys.Core.Views.AboutView">
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <Style TargetType="Label">
+        <Setter Property="HorizontalTextAlignment"
+                Value="Center" />
+      </Style>
+    </ResourceDictionary>
+  </ContentPage.Resources>
+  
+  <StackLayout VerticalOptions="Center"
+               Margin="10">
+    <Label Text="Encuestas"
+           FontSize="Large" />
+    <Label Text="Una aplicación de ejemplo del libro" />
+    <Label Text="Xamarin.Forms en acción: Aplicaciones de Negocio" />
+    <Label Text="Escrito por Rodrigo Díaz Concha" />
+  </StackLayout>
+</ContentPage>

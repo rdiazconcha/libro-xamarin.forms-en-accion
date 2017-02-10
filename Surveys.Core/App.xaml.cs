@@ -1,6 +1,5 @@
 ﻿using Prism.Unity;
 using Surveys.Core.Views;
-using Xamarin.Forms;
 
 namespace Surveys.Core
 {
@@ -10,7 +9,7 @@ namespace Surveys.Core
         {
             InitializeComponent();
 
-            await NavigationService.NavigateAsync($"{nameof(RootNavigationView)}/{nameof(SurveysView)}").ConfigureAwait(false);
+            await NavigationService.NavigateAsync($"{nameof(LoginView)}");
         }
 
         protected override void RegisterTypes()
@@ -18,6 +17,9 @@ namespace Surveys.Core
             Container.RegisterTypeForNavigation<RootNavigationView>();
             Container.RegisterTypeForNavigation<SurveysView>();
             Container.RegisterTypeForNavigation<SurveyDetailsView>();
+            Container.RegisterTypeForNavigation<LoginView>();
+            Container.RegisterTypeForNavigation<MainView>();
+            Container.RegisterTypeForNavigation<AboutView>();
         }
     }
 }
