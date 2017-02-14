@@ -13,6 +13,7 @@ namespace Surveys.Core
     {
         private INavigationService navigationService = null;
         private IPageDialogService pageDialogService = null;
+        private ILocalDbService localDbService = null;
 
         #region Properties
 
@@ -98,10 +99,12 @@ namespace Surveys.Core
 
         public ICommand EndSurveyCommand { get; set; }
 
-        public SurveyDetailsViewModel(INavigationService navigationService, IPageDialogService pageDialogService)
+        public SurveyDetailsViewModel(INavigationService navigationService, IPageDialogService pageDialogService,
+            ILocalDbService localDbService)
         {
             this.navigationService = navigationService;
             this.pageDialogService = pageDialogService;
+            this.localDbService = localDbService;
 
             Teams =
                 new ObservableCollection<string>(new[]
@@ -125,7 +128,13 @@ namespace Surveys.Core
 
         private async void EndSurveyCommandExecute()
         {
-            var newSurvey = new Survey() { Name = Name, Birthdate = Birthdate, FavoriteTeam = FavoriteTeam };
+            var newSurvey = new Survey()
+            {
+                Id = Guid.NewGuid().ToString(),
+                Name = Name,
+                Birthdate = Birthdate,
+                FavoriteTeam = FavoriteTeam
+            };
 
             var geolocationService = Xamarin.Forms.DependencyService.Get<IGeolocationService>();
 
@@ -144,7 +153,9 @@ namespace Surveys.Core
                 }
             }
 
-            await navigationService.GoBackAsync(new NavigationParameters { { "NewSurvey", newSurvey } });
+            await localDbService.InsertSurveyAsync(newSurvey);
+
+            await navigationService.GoBackAsync();
         }
 
         private bool EndSurveyCommandCanExecute()

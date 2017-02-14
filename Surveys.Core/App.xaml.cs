@@ -1,4 +1,7 @@
-﻿using Prism.Unity;
+﻿using Microsoft.Practices.Unity;
+using Prism.Unity;
+using Surveys.Core.ServiceInterfaces;
+using Surveys.Core.Services;
 using Surveys.Core.Views;
 
 namespace Surveys.Core
@@ -10,6 +13,13 @@ namespace Surveys.Core
             InitializeComponent();
 
             await NavigationService.NavigateAsync($"{nameof(LoginView)}");
+        }
+
+        protected override void ConfigureContainer()
+        {
+            base.ConfigureContainer();
+
+            Container.RegisterInstance<ILocalDbService>(new LocalDbService());
         }
 
         protected override void RegisterTypes()

@@ -4,6 +4,8 @@ namespace Surveys.Core
 {
     public class Survey
     {
+        public string Id { get; set; }
+
         public string Name { get; set; }
 
         public DateTime Birthdate { get; set; }
@@ -16,7 +18,7 @@ namespace Surveys.Core
 
         public override string ToString()
         {
-            return $"{Name} |  {Birthdate} | {FavoriteTeam} | {Lat} | {Lon}";
+            return $"{Id} {Name} |  {Birthdate} | {FavoriteTeam} | {Lat} | {Lon}";
         }
     }
 }

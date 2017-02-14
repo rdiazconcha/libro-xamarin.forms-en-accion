@@ -41,6 +41,9 @@
     </Compile>
     <Compile Include="Models\Module.cs" />
     <Compile Include="ServiceInterfaces\IGeolocationService.cs" />
+    <Compile Include="ServiceInterfaces\ILocalDbService.cs" />
+    <Compile Include="ServiceInterfaces\ISqliteService.cs" />
+    <Compile Include="Services\LocalDbService.cs" />
     <Compile Include="ViewModelBase.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
