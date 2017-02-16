@@ -6,6 +6,7 @@ using Prism.Commands;
 using Prism.Navigation;
 using Prism.Services;
 using Surveys.Core.ServiceInterfaces;
+using Surveys.Entities;
 
 namespace Surveys.Core
 {
