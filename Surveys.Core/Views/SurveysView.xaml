@@ -41,6 +41,7 @@
     <ListView ItemsSource="{Binding Surveys}"
               SelectedItem="{Binding SelectedSurvey, Mode=TwoWay}"
               ItemTemplate="{StaticResource SurveyDataTemplate}"
+              SeparatorVisibility="None"
               HasUnevenRows="True" />
     
     <Grid IsVisible="{Binding IsEmpty}">

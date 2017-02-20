@@ -12,7 +12,8 @@
     
     <ListView Grid.Row="1"
               ItemsSource="{Binding Teams}"
-              SelectedItem="{Binding SelectedTeam, Mode=TwoWay}">
+              SelectedItem="{Binding SelectedTeam, Mode=TwoWay}"
+              SeparatorVisibility="None">
       <ListView.ItemTemplate>
         <DataTemplate>
           <ViewCell>
