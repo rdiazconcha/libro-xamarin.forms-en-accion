@@ -11,5 +11,13 @@ namespace Surveys.Core.ServiceInterfaces
         Task InsertSurveyAsync(Survey survey);
 
         Task DeleteSurveyAsync(Survey survey);
+
+        Task DeleteAllSurveysAsync();
+
+        Task DeleteAllTeamsAsync();
+
+        Task InsertTeamsAsync(IEnumerable<Team> teams);
+
+        Task<IEnumerable<Team>> GetAllTeamsAsync();
     }
 }

@@ -114,6 +114,7 @@
     <Content Include="Assets\newcapture.png" />
     <Content Include="Assets\ok.png" />
     <Content Include="Assets\survey.png" />
+    <Content Include="Assets\sync.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />

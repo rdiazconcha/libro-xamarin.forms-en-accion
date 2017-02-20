@@ -94,6 +94,7 @@
     <BundleResource Include="Resources\survey%402x.png" />
     <Compile Include="Services\SqliteService.cs" />
     <BundleResource Include="Resources\delete%402x.png" />
+    <BundleResource Include="Resources\sync%402x.png" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />

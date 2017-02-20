@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Surveys.Core.Views.SyncView">
+  <Grid Margin="10">
+    <Label Text="{Binding Status}" VerticalOptions="Center" HorizontalTextAlignment="Center">
+      <Label.Style>
+        <Style TargetType="Label">
+          <Style.Triggers>
+            <DataTrigger TargetType="Label" Binding="{Binding IsBusy}" Value="True">
+              <Setter Property="IsVisible" Value="False" />
+            </DataTrigger>
+          </Style.Triggers>
+        </Style>
+      </Label.Style>
+    </Label>
+    
+    <ActivityIndicator IsRunning="{Binding IsBusy}"
+                       IsVisible="{Binding IsBusy}"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center" />
+  </Grid>
+  
+  <ContentPage.ToolbarItems>
+    <ToolbarItem Command="{Binding SyncCommand}">
+      <ToolbarItem.Icon>
+        <OnPlatform x:TypeArguments="FileImageSource"
+                    Android="sync.png"
+                    iOS="sync.png"
+                    WinPhone="assets/sync.png" />
+      </ToolbarItem.Icon>
+    </ToolbarItem>
+  </ContentPage.ToolbarItems>
+</ContentPage>

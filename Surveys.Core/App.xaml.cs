@@ -20,6 +20,7 @@ namespace Surveys.Core
             base.ConfigureContainer();
 
             Container.RegisterInstance<ILocalDbService>(new LocalDbService());
+            Container.RegisterInstance<IWebApiService>(new WebApiService());
         }
 
         protected override void RegisterTypes()
@@ -30,6 +31,8 @@ namespace Surveys.Core
             Container.RegisterTypeForNavigation<LoginView>();
             Container.RegisterTypeForNavigation<MainView>();
             Container.RegisterTypeForNavigation<AboutView>();
+            Container.RegisterTypeForNavigation<SyncView>();
+            Container.RegisterTypeForNavigation<TeamSelectionView>();
         }
     }
 }

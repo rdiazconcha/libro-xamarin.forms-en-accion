@@ -62,6 +62,15 @@ namespace Surveys.Core.ViewModels
                 },
                 new Module()
                 {
+                    Icon = "sync.png",
+                    Title = "Sincronización",
+                    LoadModuleCommand =
+                        new DelegateCommand(
+                            async () =>
+                                await navigationService.NavigateAsync($"{nameof(RootNavigationView)}/{nameof(SyncView)}"))
+                },
+                new Module()
+                {
                     Icon = "about.png",
                     Title = "Acerca de...",
                     LoadModuleCommand =

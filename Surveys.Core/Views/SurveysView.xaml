@@ -1,27 +1,37 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:core="clr-namespace:Surveys.Core;assembly=Surveys.Core"
              x:Class="Surveys.Core.SurveysView"
              Title="Encuestas">
   <ContentPage.Resources>
-    <ResourceDictionary>
-      <core:TeamColorConverter x:Key="TeamColorConverter" />
-      
+    <ResourceDictionary>      
       <DataTemplate x:Key="SurveyDataTemplate">
         <ViewCell>
-          <StackLayout>
-            <Label Text="{Binding Name}"
-                    FontSize="24" />
-            <Label Text="{Binding Birthdate, StringFormat='{}{0:dd/MM/yyyy}'}" />
-            <Label Text="{Binding FavoriteTeam}"
-                    TextColor="{Binding FavoriteTeam, Converter={StaticResource TeamColorConverter}}" />
-            <StackLayout Orientation="Horizontal">
-              <Label Text="{Binding Lat, StringFormat='{}{0:N4}'}" />
-              <Label Text="," />
-              <Label Text="{Binding Lon, StringFormat='{}{0:N4}'}" />
+          <Grid>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="Auto" />
+              <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            
+            <Image Source="{Binding Team.Logo}" 
+                   WidthRequest="100" 
+                   HeightRequest="100"
+                   HorizontalOptions="Start" 
+                   Margin="4" />
+            
+            <StackLayout Grid.Column="1" Margin="10,0,0,0">
+              <Label Text="{Binding Name}"
+                      FontSize="24" />
+              <Label Text="{Binding Birthdate, StringFormat='{}{0:dd/MM/yyyy}'}" />
+              <Label Text="{Binding Team.Name}"
+                      TextColor="{Binding Team.Color}" />
+              <StackLayout Orientation="Horizontal">
+                <Label Text="{Binding Lat, StringFormat='{}{0:N4}'}" />
+                <Label Text="," />
+                <Label Text="{Binding Lon, StringFormat='{}{0:N4}'}" />
+              </StackLayout>
             </StackLayout>
-          </StackLayout>
+          </Grid>
         </ViewCell>
       </DataTemplate>
     </ResourceDictionary>

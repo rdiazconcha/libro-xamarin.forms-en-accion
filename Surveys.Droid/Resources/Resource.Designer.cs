@@ -2209,14 +2209,17 @@ namespace Surveys.Droid
 			// aapt resource value: 0x7f0200a3
 			public const int newcapture = 2130837667;
 			
-			// aapt resource value: 0x7f0200a6
-			public const int notification_template_icon_bg = 2130837670;
+			// aapt resource value: 0x7f0200a7
+			public const int notification_template_icon_bg = 2130837671;
 			
 			// aapt resource value: 0x7f0200a4
 			public const int ok = 2130837668;
 			
 			// aapt resource value: 0x7f0200a5
 			public const int survey = 2130837669;
+			
+			// aapt resource value: 0x7f0200a6
+			public const int sync = 2130837670;
 			
 			static Drawable()
 			{

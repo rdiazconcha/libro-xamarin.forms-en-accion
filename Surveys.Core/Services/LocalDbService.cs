@@ -25,6 +25,11 @@ namespace Surveys.Core.Services
             {
                 connection.CreateTable<Survey>();
             }
+
+            if (connection.TableMappings.All(t => t.TableName != nameof(Team)))
+            {
+                connection.CreateTable<Team>();
+            }
         }
 
         public Task<IEnumerable<Survey>> GetAllSurveysAsync()
@@ -47,6 +52,26 @@ namespace Surveys.Core.Services
                 var result = command.ExecuteNonQuery();
                 return result > 0;
             });
+        }
+
+        public Task DeleteAllSurveysAsync()
+        {
+            return Task.Run(() => connection.DeleteAll<Survey>() > 0);
+        }
+
+        public Task DeleteAllTeamsAsync()
+        {
+            return Task.Run(() => connection.DeleteAll<Team>() > 0);
+        }
+
+        public Task InsertTeamsAsync(IEnumerable<Team> teams)
+        {
+            return Task.Run(() => connection.InsertAll(teams));
+        }
+
+        public Task<IEnumerable<Team>> GetAllTeamsAsync()
+        {
+            return Task.Run(() => (IEnumerable<Team>)connection.Table<Team>().ToArray());
         }
     }
 }

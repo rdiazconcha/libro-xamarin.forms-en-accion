@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Surveys.Entities;
 
@@ -10,7 +8,8 @@ namespace Surveys.Web.DAL.SqlServer
 {
     public class SurveysProvider : SqlServerProvider
     {
-        public override string ConnectionString { get; set; } = System.Configuration.ConfigurationManager.ConnectionStrings["Surveys"].ConnectionString;
+        public override string ConnectionString { get; set; } =
+            System.Configuration.ConfigurationManager.ConnectionStrings["Surveys"].ConnectionString;
 
         public async Task<IEnumerable<Survey>> GetAllSurveysAsync()
         {
@@ -28,24 +27,23 @@ namespace Surveys.Web.DAL.SqlServer
             return result;
         }
 
-        public async Task<int> InsertSurveys(Survey survey)
+        public async Task<int> InsertSurveyAsync(Survey survey)
         {
             if (survey == null)
             {
                 return 0;
             }
 
-            var query = @"INSERT INTO Surveys (Id, Name, Birthdate, FavoriteTeam, Lat, Lon) 
+            var query = @"INSERT INTO Surveys (Id, Name, Birthdate, TeamId, Lat, Lon) 
                         VALUES
-                        (@Id, @Name, @Birthdate, @FavoriteTeam, @Lat, @Lon)";
-
+                        (@Id, @Name, @Birthdate, @TeamId, @Lat, @Lon)";
 
             var parameters = new List<SqlParameter>
             {
                 new SqlParameter("@Id", GetDataValue(survey.Id)),
                 new SqlParameter("@Name", GetDataValue(survey.Name)),
                 new SqlParameter("@Birthdate", survey.Birthdate),
-                new SqlParameter("@FavoriteTeam", GetDataValue(survey.FavoriteTeam)),
+                new SqlParameter("@TeamId", survey.TeamId),
                 new SqlParameter("@Lat", survey.Lat),
                 new SqlParameter("@Lon", survey.Lon)
             };
@@ -62,7 +60,7 @@ namespace Surveys.Web.DAL.SqlServer
                 Id = reader[nameof(Survey.Id)].ToString(),
                 Name = reader[nameof(Team.Name)].ToString(),
                 Birthdate = (DateTime)reader[nameof(Survey.Birthdate)],
-                FavoriteTeam = reader[nameof(Survey.FavoriteTeam)].ToString(),
+                TeamId = (int)reader[nameof(Survey.TeamId)],
                 Lat = (double)reader[nameof(Survey.Lat)],
                 Lon = (double)reader[nameof(Survey.Lon)]
             };

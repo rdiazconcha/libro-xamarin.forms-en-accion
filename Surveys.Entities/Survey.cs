@@ -10,7 +10,7 @@ namespace Surveys.Entities
 
         public DateTime Birthdate { get; set; }
 
-        public string FavoriteTeam { get; set; }
+        public int TeamId { get; set; }
 
         public double Lat { get; set; }
 
@@ -18,7 +18,7 @@ namespace Surveys.Entities
 
         public override string ToString()
         {
-            return $"{Id} {Name} |  {Birthdate} | {FavoriteTeam} | {Lat} | {Lon}";
+            return $"{Id} {Name} |  {Birthdate} | {TeamId} | {Lat} | {Lon}";
         }
     }
 }

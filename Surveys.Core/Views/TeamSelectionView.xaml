@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Surveys.Core.Views.TeamSelectionView">
+  <Grid Margin="10">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto" />
+      <RowDefinition />
+    </Grid.RowDefinitions>
+    
+    <Label Text="Seleccione el equipo" FontSize="Large" Margin="0,0,0,20" />
+    
+    <ListView Grid.Row="1"
+              ItemsSource="{Binding Teams}"
+              SelectedItem="{Binding SelectedTeam, Mode=TwoWay}">
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <Grid>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+              </Grid.ColumnDefinitions>
+
+              <Image Source="{Binding Logo}"
+                     WidthRequest="100"
+                     HeightRequest="100" />
+              <Label Grid.Column="1" Text="{Binding Name}" Margin="10,0,0,0" VerticalTextAlignment="Center" />
+            </Grid>
+          </ViewCell>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+  </Grid>
+</ContentPage>
