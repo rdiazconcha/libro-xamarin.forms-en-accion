@@ -1,7 +1,10 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Windows.Input;
 using Prism.Commands;
+using Prism.Navigation;
 using Surveys.Core.ServiceInterfaces;
+using Xamarin.Forms;
 
 namespace Surveys.Core.ViewModels
 {
@@ -58,6 +61,15 @@ namespace Surveys.Core.ViewModels
             SyncCommand = new DelegateCommand(SyncCommandExecute);
         }
 
+        public override void OnNavigatingTo(NavigationParameters parameters)
+        {
+            base.OnNavigatingTo(parameters);
+
+            Status = Application.Current.Properties.ContainsKey("lastSync")
+                ? $"Última actualización: {(DateTime)Application.Current.Properties["lastSync"]}"
+                : "No se han sincronizado los datos";
+        }
+
         private async void SyncCommandExecute()
         {
             IsBusy = true;
@@ -80,6 +92,8 @@ namespace Surveys.Core.ViewModels
                 await localDbService.InsertTeamsAsync(allTeams);
             }
 
+            Application.Current.Properties["lastSync"] = DateTime.Now;
+            await Application.Current.SavePropertiesAsync();
             Status = $"Se enviaron {allSurveys.Count()} encuestas y se obtuvieron {allTeams.Count()} equipos";
             IsBusy = false;
         }
