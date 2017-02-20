@@ -61,8 +61,8 @@ namespace Surveys.Web.DAL.SqlServer
                 Name = reader[nameof(Team.Name)].ToString(),
                 Birthdate = (DateTime)reader[nameof(Survey.Birthdate)],
                 TeamId = (int)reader[nameof(Survey.TeamId)],
-                Lat = (double)reader[nameof(Survey.Lat)],
-                Lon = (double)reader[nameof(Survey.Lon)]
+                Lat = (double)(decimal)reader[nameof(Survey.Lat)], //Necesario porque en la base de datos es decimal
+                Lon = (double)(decimal)reader[nameof(Survey.Lon)]  //Necesario porque en la base de datos es decimal
             };
         }
     }
