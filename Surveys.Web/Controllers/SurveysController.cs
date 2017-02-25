@@ -10,12 +10,14 @@ namespace Surveys.Web.Controllers
     {
         private readonly SurveysProvider surveysProvider = new SurveysProvider();
 
+        [Authorize]
         public async Task<IEnumerable<Survey>> Get()
         {
             var allSurveys = await surveysProvider.GetAllSurveysAsync();
             return allSurveys;
         }
 
+        [Authorize]
         public async Task Post([FromBody] IEnumerable<Survey> surveys)
         {
             if (surveys == null)

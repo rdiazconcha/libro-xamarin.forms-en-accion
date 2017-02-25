@@ -40,6 +40,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\Module.cs" />
+    <Compile Include="Models\TokenResponseModel.cs" />
     <Compile Include="ServiceInterfaces\IGeolocationService.cs" />
     <Compile Include="ServiceInterfaces\ILocalDbService.cs" />
     <Compile Include="ServiceInterfaces\ISqliteService.cs" />

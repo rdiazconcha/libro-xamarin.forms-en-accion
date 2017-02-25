@@ -10,6 +10,7 @@ namespace Surveys.Web.Controllers
     {
         private readonly TeamsProvider teamsProvider = new TeamsProvider();
 
+        [Authorize]
         public async Task<IEnumerable<Team>> Get()
         {
             var allTeams = await teamsProvider.GetAllTeamsAsync();

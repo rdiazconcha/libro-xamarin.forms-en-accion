@@ -9,5 +9,7 @@ namespace Surveys.Core.ServiceInterfaces
         Task<IEnumerable<Team>> GetTeamsAsync();
 
         Task<bool> SaveSurveysAsync(IEnumerable<Survey> surveys);
+
+        Task<bool> LoginAsync(string username, string password);
     }
 }
