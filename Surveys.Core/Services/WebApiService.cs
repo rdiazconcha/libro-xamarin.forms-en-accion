@@ -52,33 +52,37 @@ namespace Surveys.Core.Services
                 $"grant_type=password&username={encodedUsername}&password={encodedPassword}", Encoding.UTF8,
                 "application/x-www-form-urlencoded");
 
-            using (var httpClient = new HttpClient())
+            if (!client.DefaultRequestHeaders.Contains("keep-alive"))
             {
-                httpClient.DefaultRequestHeaders.Add("keep-alive", "1");
-                var uri = new Uri($"{Literals.WebApiServiceBaseAddress}Token");
+                client.DefaultRequestHeaders.Add("keep-alive", "1");
+            }
 
-                using (var response = httpClient.PostAsync(uri.ToString(), content).Result)
+            var uri = new Uri($"{Literals.WebApiServiceBaseAddress}Token");
+
+            using (var response = client.PostAsync(uri.ToString(), content).Result)
+            {
+                var value = await response.Content.ReadAsStringAsync();
+
+                if (response.IsSuccessStatusCode)
                 {
-                    var value = await response.Content.ReadAsStringAsync();
+                    var token = JsonConvert.DeserializeObject<TokenResponseModel>(value);
 
-                    if (response.IsSuccessStatusCode)
+                    var tokenString = token.AccessToken;
+
+                    if (!client.DefaultRequestHeaders.Contains("Authorization"))
                     {
-                        var token = JsonConvert.DeserializeObject<TokenResponseModel>(value);
-
-                        var tokenString = token.AccessToken;
-
                         client.DefaultRequestHeaders.Add("Authorization", "Bearer " + tokenString);
-
-                        return true;
                     }
 
-                    if (value.Contains("access_denied"))
-                    {
-                        throw new Exception("Acceso denegado");
-                    }
-
-                    throw new Exception();
+                    return true;
                 }
+
+                if (value.Contains("access_denied"))
+                {
+                    return false;
+                }
+
+                throw new Exception();
             }
         }
     }

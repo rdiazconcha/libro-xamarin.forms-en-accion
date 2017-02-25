@@ -21,33 +21,35 @@ namespace Surveys.Web.Providers
             this.publicClientId = publicClientId;
         }
 
-        public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
+        public override Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
             context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
 
             //Aquí va el login REAL
 
-            if (context.UserName != "libro" && context.Password != "xamarin.forms")
+            if (context.UserName == "libro" && context.Password == "xamarin.forms")
+            {
+                //Crea y prepara el objeto ClaimsIdentity
+                var identity = new ClaimsIdentity(OAuthDefaults.AuthenticationType);
+
+                identity.AddClaim(new Claim(ClaimTypes.Name, "Rodrigo Díaz Concha"));
+
+                var data = new Dictionary<string, string> { { "email", "rodrigo@rdiazconcha.com" } };
+                var properties = new AuthenticationProperties(data);
+
+                //Crea un AuthenticationTicket con la identidad y las propiedades
+                var ticket = new AuthenticationTicket(identity, properties);
+
+                //Valid y autentica
+                context.Validated(ticket);
+
+                return Task.FromResult(true);
+            }
+            else
             {
                 context.SetError("access_denied", "Acceso denegado");
-                return;
+                return Task.FromResult(false);
             }
-
-            //Crea y prepara el objeto ClaimsIdentity
-            var identity = new ClaimsIdentity(OAuthDefaults.AuthenticationType);
-
-            identity.AddClaim(new Claim(ClaimTypes.Name, "Rodrigo Díaz Concha"));
-
-            var data = new Dictionary<string, string> { { "email", "rodrigo@rdiazconcha.com" } };
-            var properties = new AuthenticationProperties(data);
-
-            //Crea un AuthenticationTicket con la identidad y las propiedades
-            var ticket = new AuthenticationTicket(identity, properties);
-
-            //Valid y autentica
-            context.Validated(ticket);
-
-            await Task.FromResult(true);
         }
 
         public override async Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)

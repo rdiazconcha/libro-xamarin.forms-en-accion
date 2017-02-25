@@ -52,6 +52,23 @@ namespace Surveys.Core.ViewModels
             }
         }
 
+        private bool isBusy;
+
+        public bool IsBusy
+        {
+            get { return isBusy; }
+            set
+            {
+                if (isBusy == value)
+                {
+                    return;
+                }
+                isBusy = value; 
+                OnPropertyChanged();
+            }
+        }
+
+
         public ICommand LoginCommand { get; set; }
 
         public LoginViewModel(INavigationService navigationService, IWebApiService webApiService,
@@ -68,19 +85,28 @@ namespace Surveys.Core.ViewModels
 
         private async void LoginCommandExecute()
         {
+            IsBusy = true;
+
             try
             {
                 var loginResult = await webApiService.LoginAsync(Username, Password);
 
                 if (loginResult)
                 {
-                    await navigationService.NavigateAsync($"app:///{nameof(MainView)}/{nameof(RootNavigationView)}/{nameof(SurveysView)}");
+                    await navigationService.NavigateAsync(
+                        $"app:///{nameof(MainView)}/{nameof(RootNavigationView)}/{nameof(SurveysView)}");
+                }
+                else
+                {
+                    await pageDialogService.DisplayAlertAsync(Literals.LoginTitle, Literals.AccessDenied, Literals.Ok);
                 }
             }
             catch (Exception e)
             {
-                await pageDialogService.DisplayAlertAsync("Login", e.Message, Literals.Ok);
+                await pageDialogService.DisplayAlertAsync(Literals.LoginTitle, e.Message, Literals.Ok);
             }
+
+            IsBusy = false;
         }
 
         private bool LoginCommandCanExecute()
